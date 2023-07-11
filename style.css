@@ -1,0 +1,95 @@
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#theinput {
+    background-color: black;
+    height: 5%;
+    text-align: right;
+    padding: 4%;
+    color: white;
+}
+
+button {
+    padding: 0;
+}
+
+#calculator {
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 15px 10px;
+    height: 70%;
+    width: 150vh;
+    max-height: 100vw;
+    background-color: grey;
+}
+
+.nums-ops {
+    display: flex;
+    justify-content: space-around;
+    height: 80%;
+   
+}
+
+.nums{
+    width: 60%;
+    margin: 3px 0px 3px 2px;
+}
+
+.nums>button {
+    width: 30%;
+    height: 25%
+}
+
+
+.ops {
+    width: 40%;
+    text-align: right;
+    margin: 3px 0px 3px 2px;
+}
+
+.ops>button {
+    width: 47%;
+    height: 25%
+}
+
+#equal {
+    padding: 1em 0;
+}
+
+* {
+    font-weight: 900;
+}
+
+
+@media (min-width: 400px) and (min-height: 600px) {
+    * {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 800px) and (min-height: 1000px) {
+    * {
+        font-size: 35px;
+    }
+}
+
+@media (min-width: 1000px) and (min-height: 1500px) {
+    * {
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 1500px) and (min-height: 2000px) {
+    * {
+        font-size: 50px;
+    }
+}
