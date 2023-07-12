@@ -52,7 +52,7 @@ button.active {
 
 .nums>button {
     width: 30%;
-    height: 25%
+    height: 25%;
 }
 
 
@@ -64,7 +64,8 @@ button.active {
 
 .ops>button {
     width: 47%;
-    height: 25%
+    height: 25%;
+    border-radius: 15px;
 }
 
 #equal {

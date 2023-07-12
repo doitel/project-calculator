@@ -1,3 +1,4 @@
+//Map the keyboard to the buttons on the calculatr (so that users could also use the keyboard)
 const theinput = document.querySelector("#theinput")
 const numbtns = document.querySelectorAll(".nums > button")
 const opbtns = document.querySelectorAll(".ops > button")
@@ -25,8 +26,7 @@ equal.addEventListener ("click",()=>{
         let res = operate (pastNum,Number(theinput.textContent),operator)
         displayNum(res,0);
     }
-    unhighlight();
-    operator = "";
+    unhighlight(true);
 })
 
 function pressnum (value) {
@@ -70,22 +70,22 @@ function pressop (target) {
             theinput.textContent=theinput.textContent.substring(0,theinput.textContent.length-1);
             if(theinput.textContent==="") theinput.textContent="0";
         }
-        unhighlight();
+        unhighlight(true);
+        
     } else if (value === "sqrt"){
         if(Number(theinput.textContent)<0) theinput.textContent = "ERROR";
         else displayNum(Math.sqrt(Number(theinput.textContent)));
-        unhighlight();
+        unhighlight(true);
     } else {
         if (operator && !highlight) {
             let res = operate (pastNum,Number(theinput.textContent),operator)
             displayNum(res,res);
         }
         if(highlight && target.value === operator){
-            unhighlight();
-            operator = "";
+            unhighlight(true);
             return;
         }
-        unhighlight();
+        unhighlight(true);
         target.classList.add("active");
         highlight=true;
         operator = value;
@@ -100,24 +100,28 @@ function operate (a,b,operator) {
     if(operator==="mult") return a*b;
 }
 
-function unhighlight () {
+function unhighlight (clearoperator = false) {
     for (opbtn of opbtns){ 
         opbtn.classList.remove("active");
     }
     highlight=false;
+    if(clearoperator) operator = "";
 }
 
 function displayNum (res,store) {
-    res = Number(res.toFixed(8))
-    dotted = Number.isInteger(res)? false: true;
-    theinput.textContent = isNaN(res)? "ERROR":res;
-    if(store!=undefined) pastNum = store;  
+    if(store!=undefined) pastNum = store;
+    if (isNaN(res)){
+        theinput.textContent = "ERROR"
+    } else {
+        let newres = Number(res.toFixed(8))
+        dotted = Number.isInteger(newres)? false: true;
+        theinput.textContent = res;
+    }
 }
 
 function reset () {
     dotted = false;
     theinput.textContent = "0";
     pastNum = 0;
-    unhighlight();
-    operator = "";
+    unhighlight(true);
 }
