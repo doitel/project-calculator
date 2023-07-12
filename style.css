@@ -20,6 +20,10 @@ button {
     color: white;
 }
 
+button.active {
+    background-color: #000000;
+}
+
 #calculator {
     border: solid black;
     display: flex;

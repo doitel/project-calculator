@@ -23,35 +23,27 @@ for (opbtn of opbtns){
 equal.addEventListener ("click",()=>{
     if(operator && !highlight) {
         let res = operate (pastNum,Number(theinput.textContent),operator)
-        if(Number.isInteger(res)) dotted=false;
-        else dotted=true;
-        theinput.textContent = res;
-        pastNum = 0;
+        displayNum(res,0);
     }
-    for (opbtn of opbtns){ 
-        opbtn.style.backgroundColor = "#4d4d4d"
-    }
+    unhighlight();
     operator = "";
-
 })
 
-
-function pressnum (value){
+function pressnum (value) {
     if (highlight&&value!=="-"){
         pastNum = Number(theinput.textContent);
-        theinput.textContent = "0";
+        displayNum(0);
+        dotted=false;
     }
 
-    if(value!=="-"){
-        for (opbtn of opbtns){ 
-            opbtn.style.backgroundColor = "#4d4d4d"
-        }
-        highlight=false;
-    }   
+    if(value!=="-") unhighlight();
+    if(theinput.textContent==="ERROR") reset();
 
-    if(theinput.textContent==="ERROR") theinput.textContent = "0";
     if(theinput.textContent === "0"){
-        if(value===".") theinput.textContent = theinput.textContent+value
+        if(value==="."){
+            theinput.textContent = theinput.textContent+value
+            dotted = true;
+        }
         else if(value!=="-") theinput.textContent = value;
     } else {
         if(value==="."){
@@ -67,18 +59,9 @@ function pressnum (value){
 }
 
 function pressop (target) {
-    for (opbtn of opbtns){ 
-        opbtn.style.backgroundColor = "#4d4d4d"
-    }
     let value = target.value;
-    if(theinput.textContent==="ERROR") theinput.textContent = "0";
-    if(value === "cl") {
-        dotted = false;
-        theinput.textContent = "0"
-        pastNum = 0;
-        highlight = false;
-        operator = "";
-    } else if (value === "back"){
+    if(theinput.textContent==="ERROR"||value === "cl") reset()
+    else if (value === "back"){
         if(theinput.textContent.slice(-1)===".") dotted=false;
         if(theinput.textContent[0]==="-"){
             if (theinput.textContent.length>2) theinput.textContent=theinput.textContent.substring(0,theinput.textContent.length-1)
@@ -87,25 +70,23 @@ function pressop (target) {
             theinput.textContent=theinput.textContent.substring(0,theinput.textContent.length-1);
             if(theinput.textContent==="") theinput.textContent="0";
         }
-        highlight = false;
+        unhighlight();
     } else if (value === "sqrt"){
         if(Number(theinput.textContent)<0) theinput.textContent = "ERROR";
-        else{ 
-            let res = Math.sqrt(Number(theinput.textContent));
-            if (Number.isInteger(res)) dotted=false;
-            else dotted=true
-            theinput.textContent = res;
-        }
-        highlight = false;
+        else displayNum(Math.sqrt(Number(theinput.textContent)));
+        unhighlight();
     } else {
         if (operator && !highlight) {
             let res = operate (pastNum,Number(theinput.textContent),operator)
-            if(Number.isInteger(res)) dotted=false;
-            else dotted=true;
-            theinput.textContent = res;
-            pastNum = res;
+            displayNum(res,res);
         }
-        target.style.backgroundColor="#000000";
+        if(highlight && target.value === operator){
+            unhighlight();
+            operator = "";
+            return;
+        }
+        unhighlight();
+        target.classList.add("active");
         highlight=true;
         operator = value;
     }
@@ -114,8 +95,31 @@ function pressop (target) {
 function operate (a,b,operator) {
     if(operator==="mod") return a%b;
     if(operator==="minus") return a-b;
-    if(operator==="div") return a/b;
+    if(operator==="div") return b!=0? a/b: "ERROR";
     if(operator==="plus") return a+b;
     if(operator==="mult") return a*b;
 }
 
+function unhighlight () {
+    for (opbtn of opbtns){ 
+        opbtn.classList.remove("active");
+    }
+    highlight=false;
+}
+
+function displayNum (res,store) {
+    if(Number.isInteger(res)) dotted=false;
+    else dotted=true
+    theinput.textContent = res;
+    if(store!=undefined){
+        pastNum = store;
+    }
+}
+
+function reset () {
+    dotted = false;
+    theinput.textContent = "0";
+    pastNum = 0;
+    unhighlight();
+    operator = "";
+}
