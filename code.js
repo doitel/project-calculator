@@ -115,7 +115,7 @@ function displayNum (res,store) {
     } else {
         let newres = Number(res.toFixed(8))
         dotted = Number.isInteger(newres)? false: true;
-        theinput.textContent = res;
+        theinput.textContent = newres;
     }
 }
 
