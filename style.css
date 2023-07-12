@@ -6,6 +6,12 @@ body {
     justify-content: center;
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #202124;
+    }
+}
+
 #theinput {
     background-color: black;
     height: 5%;
@@ -21,7 +27,7 @@ button {
 }
 
 button.active {
-    background-color: #000000;
+    background-color: #23201d;
 }
 
 #calculator {
