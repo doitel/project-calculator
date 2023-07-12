@@ -93,7 +93,7 @@ function pressop (target) {
 }
 
 function operate (a,b,operator) {
-    if(operator==="mod") return a%b;
+    if(operator==="mod") return b!=0? a%b: "ERROR";
     if(operator==="minus") return a-b;
     if(operator==="div") return b!=0? a/b: "ERROR";
     if(operator==="plus") return a+b;
@@ -108,12 +108,10 @@ function unhighlight () {
 }
 
 function displayNum (res,store) {
-    if(Number.isInteger(res)) dotted=false;
-    else dotted=true
-    theinput.textContent = res;
-    if(store!=undefined){
-        pastNum = store;
-    }
+    res = Number(res.toFixed(8))
+    dotted = Number.isInteger(res)? false: true;
+    theinput.textContent = isNaN(res)? "ERROR":res;
+    if(store!=undefined) pastNum = store;  
 }
 
 function reset () {
