@@ -30,21 +30,24 @@ equal.addEventListener ("click",()=>{
 })
 
 function pressnum (value) {
-    if (highlight&&value!=="-"){
-        pastNum = Number(theinput.textContent);
-        displayNum(0);
-        dotted=false;
-    }
+    if (highlight) displayNum(0,Number(theinput.textContent));
 
-    if(value!=="-") unhighlight();
+    unhighlight();
+
     if(theinput.textContent==="ERROR") reset();
 
-    if(theinput.textContent === "0"){
+    if(theinput.textContent === "0"||theinput.textContent === "-0"){
         if(value==="."){
             theinput.textContent = theinput.textContent+value
             dotted = true;
         }
-        else if(value!=="-") theinput.textContent = value;
+        else if(value!=="-"){ 
+            theinput.textContent = theinput.textContent[0]==="-"? "-"+value : value;
+        }
+        else{
+            if(theinput.textContent[0]==="-") theinput.textContent = theinput.textContent.substring(1);
+            else theinput.textContent = "-"+theinput.textContent
+        }
     } else {
         if(value==="."){
             if(!dotted) theinput.textContent = theinput.textContent+value
@@ -64,10 +67,10 @@ function pressop (target) {
     else if (value === "back"){
         if(theinput.textContent.slice(-1)===".") dotted=false;
         if(theinput.textContent[0]==="-"){
-            if (theinput.textContent.length>2) theinput.textContent=theinput.textContent.substring(0,theinput.textContent.length-1)
+            if (theinput.textContent.length>2) theinput.textContent=theinput.textContent.slice(0,-1)
             else theinput.textContent = "0"
         } else {
-            theinput.textContent=theinput.textContent.substring(0,theinput.textContent.length-1);
+            theinput.textContent=theinput.textContent.slice(0,-1);
             if(theinput.textContent==="") theinput.textContent="0";
         }
         unhighlight(true);
