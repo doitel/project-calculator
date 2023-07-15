@@ -80,4 +80,5 @@ button.active {
 * {
     font-weight: 900;
     font-size: calc(0.7rem + 1vmin);
+    touch-action: manipulation;
 }
