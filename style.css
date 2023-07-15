@@ -23,19 +23,35 @@ body {
 
 button {
     padding: 0;
-    background-color: #4d4d4d;
+    background-color: hsl(0, 0%, 30%);
     color: white;
+    border-style: outset;
+    border-left: solid black;
+    border-top: solid #767676;
+    border-bottom: solid #212121;
+    border-right: solid #333333;
+}
+
+button:hover {
+    background-color: hsl(0, 0%, 20%);
+}
+
+
+button:active {
+    background-color: hsl(0, 0%, 0%);
+    border: none;
 }
 
 button.active {
-    background-color: #23201d;
+    background-color: hsl(0, 0%, 10%);
+    border: none;
 }
 
 #calculator {
     border: solid black;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: clamp(0.5px, 1vh, 10px);
     justify-content: space-around;
     border-radius: 5px;
     padding: calc(15px - 0.1rem) calc(10px - 0.1rem); 
@@ -49,12 +65,11 @@ button.active {
     display: flex;
     justify-content: space-around;
     height: 80%;
-   
 }
 
 .nums{
     width: 60%;
-    margin: 3px 0px 3px 2px;
+    margin: 3px 0px 3px 0px;
 }
 
 .nums>button {

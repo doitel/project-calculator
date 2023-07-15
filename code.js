@@ -1,4 +1,3 @@
-//Map the keyboard to the buttons on the calculatr (so that users could also use the keyboard)
 const theinput = document.querySelector("#theinput")
 const numbtns = document.querySelectorAll(".nums > button")
 const opbtns = document.querySelectorAll(".ops > button")
@@ -30,7 +29,9 @@ equal.addEventListener ("click",()=>{
 })
 
 document.addEventListener('keydown', (event) => {
-    let button = document.querySelector(`button[data-press="${event.key}"]`);
+    let press=event.key
+    if(press=="x") press="*";
+    let button = document.querySelector(`button[data-press="${press}"]`);
     if (button) button.click();
 });
 
