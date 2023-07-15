@@ -78,12 +78,12 @@ function pressop (target) {
             theinput.textContent=theinput.textContent.slice(0,-1);
             if(theinput.textContent==="") theinput.textContent="0";
         }
-        unhighlight(true);
+        if(highlight) unhighlight(true);
         
     } else if (value === "sqrt"){
         if(Number(theinput.textContent)<0) theinput.textContent = "ERROR";
         else displayNum(Math.sqrt(Number(theinput.textContent)));
-        unhighlight(true);
+        if(highlight) unhighlight(true);
     } else {
         if (operator && !highlight) {
             let res = operate (pastNum,Number(theinput.textContent),operator)
