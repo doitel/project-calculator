@@ -37,7 +37,7 @@ button.active {
     gap: 5px;
     justify-content: space-around;
     border-radius: 5px;
-    padding: 15px 10px;
+    padding: calc(15px - 0.1rem) calc(10px - 0.1rem); 
     height: 70%;
     width: 150vh;
     max-height: 100vw;
@@ -71,38 +71,13 @@ button.active {
 .ops>button {
     width: 47%;
     height: 25%;
-    border-radius: 15px;
 }
 
 #equal {
-    padding: 1em 0;
+    padding: calc(1vmin * 2);
 }
 
 * {
     font-weight: 900;
-}
-
-
-@media (min-width: 400px) and (min-height: 600px) {
-    * {
-        font-size: 25px;
-    }
-}
-
-@media (min-width: 800px) and (min-height: 1000px) {
-    * {
-        font-size: 35px;
-    }
-}
-
-@media (min-width: 1000px) and (min-height: 1500px) {
-    * {
-        font-size: 40px;
-    }
-}
-
-@media (min-width: 1500px) and (min-height: 2000px) {
-    * {
-        font-size: 50px;
-    }
+    font-size: calc(0.7rem + 1vmin);
 }
