@@ -29,6 +29,11 @@ equal.addEventListener ("click",()=>{
     unhighlight(true);
 })
 
+document.addEventListener('keydown', (event) => {
+    let button = document.querySelector(`button[data-press="${event.key}"]`);
+    if (button) button.click();
+});
+
 function pressnum (value) {
     if (highlight) displayNum(0,Number(theinput.textContent));
 
