@@ -30,6 +30,7 @@ button {
     border-top: solid #767676;
     border-bottom: solid #212121;
     border-right: solid #333333;
+    outline: none;
 }
 
 button:hover {
@@ -39,12 +40,12 @@ button:hover {
 
 button:active {
     background-color: hsl(0, 0%, 0%);
-    border: none;
+    border-color: hsl(0, 0%, 0%);
 }
 
 button.active {
     background-color: hsl(0, 0%, 10%);
-    border: none;
+    border-color: hsl(0, 0%, 0%);
 }
 
 #calculator {

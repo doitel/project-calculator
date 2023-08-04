@@ -29,8 +29,10 @@ equal.addEventListener ("click",()=>{
 })
 
 document.addEventListener('keydown', (event) => {
+    event.preventDefault();
     let press=event.key
-    if(press=="x") press="*";
+    if(press=="Enter") press = "="
+    else if(press=="x") press="*";
     let button = document.querySelector(`button[data-press="${press}"]`);
     if (button) button.click();
 });
