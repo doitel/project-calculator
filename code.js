@@ -1,6 +1,6 @@
 const theinput = document.querySelector("#theinput")
 const numbtns = document.querySelectorAll(".nums > button")
-const opbtns = document.querySelectorAll(".ops > button")
+const opbtns = document.querySelectorAll(".ops>button")
 
 let operator = "";
 let highlight = false;
